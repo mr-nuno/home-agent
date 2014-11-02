@@ -13,6 +13,7 @@
 		D0A72E771A05224400AADA6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0A72E761A05224400AADA6C /* Images.xcassets */; };
 		D0A72E7A1A05224400AADA6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A72E781A05224400AADA6C /* LaunchScreen.xib */; };
 		D0A72E861A05224400AADA6C /* HomeAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A72E851A05224400AADA6C /* HomeAgentTests.swift */; };
+		D0F809C11A06B53100EFF67B /* UISwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F809C01A06B53100EFF67B /* UISwitchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		D0A72E7F1A05224400AADA6C /* HomeAgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeAgentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A72E841A05224400AADA6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0A72E851A05224400AADA6C /* HomeAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAgentTests.swift; sourceTree = "<group>"; };
+		D0F809C01A06B53100EFF67B /* UISwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		D0A72E6C1A05224400AADA6C /* HomeAgent */ = {
 			isa = PBXGroup;
 			children = (
+				D0F809C01A06B53100EFF67B /* UISwitchCell.swift */,
 				D0A72E6F1A05224400AADA6C /* AppDelegate.swift */,
 				D0A72E711A05224400AADA6C /* ViewController.swift */,
 				D0A72E731A05224400AADA6C /* Main.storyboard */,
@@ -161,6 +164,7 @@
 				TargetAttributes = {
 					D0A72E691A05224300AADA6C = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = A8H99HDYF8;
 					};
 					D0A72E7E1A05224400AADA6C = {
 						CreatedOnToolsVersion = 6.1;
@@ -214,6 +218,7 @@
 			files = (
 				D0A72E721A05224400AADA6C /* ViewController.swift in Sources */,
 				D0A72E701A05224400AADA6C /* AppDelegate.swift in Sources */,
+				D0F809C11A06B53100EFF67B /* UISwitchCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +410,7 @@
 				D0A72E8B1A05224400AADA6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0A72E8C1A05224400AADA6C /* Build configuration list for PBXNativeTarget "HomeAgentTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +419,7 @@
 				D0A72E8E1A05224400AADA6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
