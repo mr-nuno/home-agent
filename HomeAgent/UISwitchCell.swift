@@ -8,16 +8,10 @@
 
 import UIKit
 
-protocol ToggleSwitchDelegate {
-    func toggleSwitch(string: String)
-}
-
 class UISwitchCell: UITableViewCell {
 
     @IBOutlet weak var deviceStatus: UISwitch!
     @IBOutlet weak var deviceName: UILabel!
-    
-    var delegate: ToggleSwitchDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,15 +24,9 @@ class UISwitchCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCell(name: String, on: Bool){
-        deviceName.text = name;
-        deviceStatus.on = on;
+    func setCell(name: String, on: Bool, id: String){
+        deviceName.text = name
+        deviceStatus.on = on
+        deviceStatus.tag = id.toInt()!
     }
-    
-    @IBAction func toggleStatus(sender: UISwitch) {
-        //delegate.selectUser("test");
-        //even with just this println i get the error
-        println(deviceStatus.on);
-    }
-
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D02E890F1A0834C50067671A /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02E890E1A0834C50067671A /* DeviceService.swift */; };
 		D0A72E701A05224400AADA6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A72E6F1A05224400AADA6C /* AppDelegate.swift */; };
 		D0A72E721A05224400AADA6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A72E711A05224400AADA6C /* ViewController.swift */; };
 		D0A72E751A05224400AADA6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0A72E731A05224400AADA6C /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D02E890E1A0834C50067671A /* DeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceService.swift; path = ../DeviceService.swift; sourceTree = "<group>"; };
 		D0A72E6A1A05224400AADA6C /* HomeAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A72E6E1A05224400AADA6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0A72E6F1A05224400AADA6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		D0A72E6C1A05224400AADA6C /* HomeAgent */ = {
 			isa = PBXGroup;
 			children = (
+				D02E890E1A0834C50067671A /* DeviceService.swift */,
 				D0F809C01A06B53100EFF67B /* UISwitchCell.swift */,
 				D0A72E6F1A05224400AADA6C /* AppDelegate.swift */,
 				D0A72E711A05224400AADA6C /* ViewController.swift */,
@@ -219,6 +222,7 @@
 				D0A72E721A05224400AADA6C /* ViewController.swift in Sources */,
 				D0A72E701A05224400AADA6C /* AppDelegate.swift in Sources */,
 				D0F809C11A06B53100EFF67B /* UISwitchCell.swift in Sources */,
+				D02E890F1A0834C50067671A /* DeviceService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

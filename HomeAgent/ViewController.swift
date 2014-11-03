@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ToggleSwitchDelegate  {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
     var tableData = [];
     
@@ -31,12 +31,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell: UISwitchCell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as UISwitchCell
         
         var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+        
         var name = rowData["name"] as String
         var on = rowData["on"] as Bool
-
-        cell.setCell(name, on: on)
+        var id = rowData["id"] as String
+        
+        cell.setCell(name, on: on, id: id)
+        cell.deviceStatus.addTarget(self, action: "push:", forControlEvents: UIControlEvents.AllTouchEvents)
         
         return cell
+    }
+    
+    func push(sender: UISwitch){
+        let a = sender.on ? "on" : "off"
+        let urlPath = "http://aepi.homeserver.com:8000/device/\(sender.tag)/\(a)"
+        
+        var request = NSMutableURLRequest(URL: NSURL(string: urlPath)!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "PUT"
+
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+ 
+            var err: NSError?
+
+            if(err != nil) {
+               self.tableView!.reloadData()
+            }
+          
+        })
+        
+        task.resume()
     }
     
     func getDevices() {
@@ -54,10 +78,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         task.resume()
 
-    }
-    
-    func toggleSwitch(string: String){
-    
     }
 }
 
