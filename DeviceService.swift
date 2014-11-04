@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias ActionResponse = (device:Device?, error:NSError?) -> Void
+
 class Device{
     var id = 0
     var name = ""
@@ -19,15 +21,15 @@ class Device{
         self.on = on
     }
     
-    func turnOn(callBack: (device: Device) -> ()) {
-        call("on", callBack)
+    func turnOn(completionHandler: ActionResponse) {
+        call("on", completionHandler)
     }
     
-    func turnOff(callBack: (device: Device) -> ()) {
-        call("off", callBack)
+    func turnOff(completionHandler: ActionResponse) {
+        call("off", completionHandler)
     }
     
-    private func call(action: String, callBack: (device: Device) -> ()){
+    private func call(action: String, completionHandler: ActionResponse){
         
         let urlPath = "http://aepi.homeserver.com:8000/device/\(self.id)/\(action)"
         
@@ -37,7 +39,7 @@ class Device{
         
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             self.on = action == "on" ? true : false
-            callBack(device: self)
+            //completionHandler(device:self, error:nil)
         })
         
         task.resume()
@@ -45,11 +47,20 @@ class Device{
     }
 }
 
+typealias ServiceResponse = (devices:[Device]?, error:NSError?) -> Void
+
 class DeviceService {
     
     let url = "http://aepi.homeserver.com:8000/device"
     
-    func getDevices(completionHandler: (devices: [Device]) -> ()) {
+    class var sharedInstance:DeviceService {
+        struct Singleton {
+            static let instance = DeviceService()
+        }
+        return Singleton.instance
+    }
+    
+    func getDevices(completionHandler: ServiceResponse) {
     
         var request = NSMutableURLRequest(URL: NSURL(string:self.url)!)
         var session = NSURLSession.sharedSession()
@@ -77,7 +88,7 @@ class DeviceService {
             }
             
             //notify changes
-            completionHandler(devices: deviceList)
+            completionHandler(devices:deviceList, error:nil)
         })
         
         task.resume()

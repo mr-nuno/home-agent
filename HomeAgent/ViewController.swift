@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
+    let service = DeviceService()
     var tableData = [];
     
     @IBOutlet weak var tableView: UITableView!
@@ -30,21 +31,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell: UISwitchCell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as UISwitchCell
         
-        var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+        var device: Device = self.tableData[indexPath.row] as Device
         
-        var name = rowData["name"] as String
-        var on = rowData["on"] as Bool
-        var id = rowData["id"] as String
-        
-        cell.setCell(name, on: on, id: id)
-        cell.deviceStatus.addTarget(self, action: "push:", forControlEvents: UIControlEvents.AllTouchEvents)
+        cell.setCell(device)
         
         return cell
     }
     
-    func push(sender: UISwitch){
+    func push(sender: UIDeviceSwitch){
         let a = sender.on ? "on" : "off"
-        let urlPath = "http://aepi.homeserver.com:8000/device/\(sender.tag)/\(a)"
+        
+        /*let urlPath = "http://aepi.homeserver.com:8000/device/\(sender.tag)/\(a)"
         
         var request = NSMutableURLRequest(URL: NSURL(string: urlPath)!)
         var session = NSURLSession.sharedSession()
@@ -60,24 +57,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
           
         })
         
-        task.resume()
+        task.resume()*/
     }
     
     func getDevices() {
-
-        let urlPath = "http://aepi.homeserver.com:8000/device"
-        let url = NSURL(string: urlPath)
-        
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            
-            var err: NSError?
-            
-            self.tableData = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &err) as NSArray
+        DeviceService.sharedInstance.getDevices(){ (devices:[Device]?, error:NSError?) in
+            self.tableData = devices!
             self.tableView!.reloadData()
         }
-        
-        task.resume()
-
     }
 }
 

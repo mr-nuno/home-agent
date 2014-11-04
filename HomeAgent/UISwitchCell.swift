@@ -10,7 +10,7 @@ import UIKit
 
 class UISwitchCell: UITableViewCell {
 
-    @IBOutlet weak var deviceStatus: UISwitch!
+    @IBOutlet weak var deviceStatus: UIDeviceSwitch!
     @IBOutlet weak var deviceName: UILabel!
     
     override func awakeFromNib() {
@@ -24,9 +24,29 @@ class UISwitchCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCell(name: String, on: Bool, id: String){
-        deviceName.text = name
-        deviceStatus.on = on
-        deviceStatus.tag = id.toInt()!
+    func setCell(device: Device){
+        deviceName.text = device.name
+        deviceStatus.on = device.on
+        deviceStatus.tag = device.id
+        
+        deviceStatus.device = device
+        deviceStatus.addTarget(self, action: "push:", forControlEvents: UIControlEvents.AllTouchEvents)
+    }
+    
+    func push(sender: UIDeviceSwitch){
+        let a = sender.on ? "on" : "off"
+        
+        if(sender.on) {
+            sender.device.turnOff(){ (device: Device?, error: NSError?) in
+                println("Device \(device?.id) is \(device?.on)")
+            }
+        }
+        
+        if(!sender.on) {
+            sender.device.turnOn(){ (device: Device?, error: NSError?) in
+                println("Device \(device?.id) is \(device?.on)")
+            }
+        }
+        
     }
 }
