@@ -14,9 +14,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var tableData = [];
     
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDevices()
+        
+        DeviceService.sharedInstance.getDevices(){ (devices:[Device]?, error:NSError?) in
+            println("data loaded")
+            self.tableData = devices!
+            self.tableView!.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,35 +42,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.setCell(device)
         
         return cell
-    }
-    
-    func push(sender: UIDeviceSwitch){
-        let a = sender.on ? "on" : "off"
-        
-        /*let urlPath = "http://aepi.homeserver.com:8000/device/\(sender.tag)/\(a)"
-        
-        var request = NSMutableURLRequest(URL: NSURL(string: urlPath)!)
-        var session = NSURLSession.sharedSession()
-        request.HTTPMethod = "PUT"
-
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
- 
-            var err: NSError?
-
-            if(err != nil) {
-               self.tableView!.reloadData()
-            }
-          
-        })
-        
-        task.resume()*/
-    }
-    
-    func getDevices() {
-        DeviceService.sharedInstance.getDevices(){ (devices:[Device]?, error:NSError?) in
-            self.tableData = devices!
-            self.tableView!.reloadData()
-        }
     }
 }
 

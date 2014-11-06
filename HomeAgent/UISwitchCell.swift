@@ -15,13 +15,10 @@ class UISwitchCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func setCell(device: Device){
@@ -34,19 +31,8 @@ class UISwitchCell: UITableViewCell {
     }
     
     func push(sender: UIDeviceSwitch){
-        let a = sender.on ? "on" : "off"
-        
-        if(sender.on) {
-            sender.device.turnOff(){ (device: Device?, error: NSError?) in
-                println("Device \(device?.id) is \(device?.on)")
-            }
+        sender.device.toggle(){ (device: Device?, error: NSError?) in
+            println("Device \(device?.id) is \(device?.on)")
         }
-        
-        if(!sender.on) {
-            sender.device.turnOn(){ (device: Device?, error: NSError?) in
-                println("Device \(device?.id) is \(device?.on)")
-            }
-        }
-        
     }
 }
